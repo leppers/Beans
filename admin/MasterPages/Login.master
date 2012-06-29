@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Login.master.cs" Inherits="MasterPages_Donation" EnableTheming="true"%>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register TagPrefix="Menu" TagName="Menu" Src="~/includes/MenuControl.ascx"%> 
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="~/App_Themes/brown-Theme/style.css" rel="stylesheet" type="text/css" />
+ <!--   <link href="~/App_Themes/green-Theme/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/App_Themes/green-Theme/default.ultimate.css" media="screen" rel="stylesheet" type="text/css" /> -->
+     <link href="~/includes/dropdown.linear.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="~/includes/default.ultimate.linear.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<noscript>
+<meta http-equiv='refresh' content='0;url=http://www.kbitsystems.com/beans/enablejava.htm'/>
+</noscript>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+  
+	    <div id="wrapper">
+                
+            <div id="header">
+                <div id="left-620">
+                <a href="./" class="logo"><img id="Img1" runat="server" src="~/App_Themes/brown-Theme/images/Logo.jpg" alt="logo" height="100" /></a>
+                 </div>
+                 
+
+   <!-- menu file -->
+      
+    
+            </div>
+         <!-- End Header -->
+            
+            <div id="banner">
+         
+                 <h1><asp:Label ID="lblTitle" runat="server" Text="" /></h1>
+          
+                 </div>
+    	    
+            <div id="container">
+                 <asp:contentplaceholder id="ContentPlaceHolder" runat="server"></asp:contentplaceholder>
+               
+            
+            <div class="clear"></div>
+            </div>
+           <div id="footer">
+                
+              <p> <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Default.aspx" Text="Home" /> | 
+               <asp:HyperLink ID="lnkDonation" runat="server" NavigateUrl="http://www.kbitsystems.com/beans/donation/Default.aspx" Text="Donation" /> | 
+               <asp:HyperLink ID="lnkInventory" runat="server" NavigateUrl="http://www.kbitsystems.com/beans/inventory/Default.aspx" Text="Inventory" /> | 
+               <asp:HyperLink ID="lnkVolunteer" runat="server" NavigateUrl="http://www.kbitsystems.com/beans/volunteer/Default.aspx" Text="Volunteer" />
+    
+                              
+                    
+    
+                              
+                    Bean's Cafe Anchorage, AK 99503&nbsp;&nbsp;&nbsp;&nbsp;Version 0.5</p>
+              
+                
+           </div> 
+           <!-- End Footer -->
+            </div> 
+          
+         <!-- End Wrapper -->
+    </form>
+</body>
+</html>

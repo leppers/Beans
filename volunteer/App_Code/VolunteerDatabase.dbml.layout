@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="VolunteerDatabase">
+  <DataContextMoniker Name="/VolunteerDatabaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="92325493-ccb3-44a0-8663-ba548007857c" absoluteBounds="0.75, 0.75, 2, 3.0683211263020831">
+      <DataClassMoniker Name="/VolunteerDatabaseDataContext/Entity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de4b8caa-d609-496b-9c1b-4467c010bfd8" absoluteBounds="0.76499999999999968, 1.21, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8ff496ba-1804-45db-8d7c-23addd6d2d16" absoluteBounds="3.125, 1.5, 2, 2.24658447265625">
+      <DataClassMoniker Name="/VolunteerDatabaseDataContext/Volunteer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="916d5036-1d03-466d-903f-d2950838f81e" absoluteBounds="3.1399999999999997, 1.96, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.62329223632813); (3.125 : 2.62329223632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VolunteerDatabaseDataContext/Entity/Entity_Volunteer" />
+      <nodes>
+        <classShapeMoniker Id="92325493-ccb3-44a0-8663-ba548007857c" />
+        <classShapeMoniker Id="8ff496ba-1804-45db-8d7c-23addd6d2d16" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="08db4f5b-b508-45a7-aa2b-ae3fe412ddf3" absoluteBounds="5.5, 0.875, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/VolunteerDatabaseDataContext/Shift" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ba012bcb-97bc-4098-9163-64305cf69dfa" absoluteBounds="5.515, 1.335, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.89992390950521); (5.125 : 1.89992390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VolunteerDatabaseDataContext/Shift/Shift_Volunteer" />
+      <nodes>
+        <classShapeMoniker Id="08db4f5b-b508-45a7-aa2b-ae3fe412ddf3" />
+        <classShapeMoniker Id="8ff496ba-1804-45db-8d7c-23addd6d2d16" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

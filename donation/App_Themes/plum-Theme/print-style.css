@@ -1,0 +1,35 @@
+﻿body 
+{
+    width:600px;
+}
+#header
+{
+    height:100px;
+    width:600px;
+}
+#header-left
+{
+    float:left;
+    width:200px;
+}
+#header-right
+{
+    float:right;
+    width:400px;
+    
+  
+}
+#donation
+{
+}
+#lineItem
+{
+}
+#footer
+{
+}
+h1
+{
+    font-size:medium;
+}
+

@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BeansDataSet" targetNamespace="http://tempuri.org/BeansDataSet.xsd" xmlns:mstns="http://tempuri.org/BeansDataSet.xsd" xmlns="http://tempuri.org/BeansDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="Beans_DB_v4ConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="Beans_DB_v4ConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.Beans_DB_v4ConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="Beans_DB_v4ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Beans_DB_v4ConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.Beans_DB_v4ConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationTableAdapter" GeneratorDataComponentClassName="DonationTableAdapter" Name="Donation" UserDataComponentName="DonationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT donation.donation_ID, donation.entity_id, donation.donation_value, donation.donation_DateTime, Entity.Entity_Organization_Name
+FROM Donation, Entity
+WHERE donation.entity_id = Entity.Entity_id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="donation_ID" DataSetColumn="donation_ID" />
+              <Mapping SourceColumn="donation_value" DataSetColumn="donation_value" />
+              <Mapping SourceColumn="entity_id" DataSetColumn="entity_id" />
+              <Mapping SourceColumn="donation_DateTime" DataSetColumn="donation_DateTime" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT category.category_name, donation.donation_value, donlin.donlin_weight *2
+From Category, Donation, DonLin
+Where Donation.donation_id = DonLin.donation_id AND DonLin.category_ID = Category.category_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="category_name" DataSetColumn="category_name" />
+              <Mapping SourceColumn="donation_value" DataSetColumn="donation_value" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationAllTableAdapter" GeneratorDataComponentClassName="DonationAllTableAdapter" Name="DonationAll" UserDataComponentName="DonationAllTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT
+D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name, SUM(DL.DonLin_Weight)
+FROM
+Donation D, Entity E, DonLin DL
+WHERE
+D.Donation_ID=DL.Donation_ID And E.Entity_ID=D.Entity_ID And D.Donation_Action Like 'In'
+GROUP BY D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name
+ORDER BY D.Donation_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Donation_ID" DataSetColumn="Donation_ID" />
+              <Mapping SourceColumn="Donation_DateTime" DataSetColumn="Donation_DateTime" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationNonFoodTableAdapter" GeneratorDataComponentClassName="DonationNonFoodTableAdapter" Name="DonationNonFood" UserDataComponentName="DonationNonFoodTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT
+D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name, SUM(DL.DonLin_Weight) AS TotalWeight
+FROM
+Donation D, Entity E, DonLin DL
+WHERE
+D.Donation_ID=DL.Donation_ID And E.Entity_ID=D.Entity_ID And DL.Category_ID=16 And D.Donation_Action Like 'In'
+GROUP BY D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name
+ORDER BY D.Donation_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Donation_ID" DataSetColumn="Donation_ID" />
+              <Mapping SourceColumn="Donation_DateTime" DataSetColumn="Donation_DateTime" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+              <Mapping SourceColumn="TotalWeight" DataSetColumn="TotalWeight" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationFoodTableAdapter" GeneratorDataComponentClassName="DonationFoodTableAdapter" Name="DonationFood" UserDataComponentName="DonationFoodTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT
+D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name, SUM(DL.DonLin_Weight) AS TotalWeight
+FROM
+Donation D, Entity E, DonLin DL
+WHERE
+D.Donation_ID=DL.Donation_ID And E.Entity_ID=D.Entity_ID And DL.Category_ID&lt;&gt;16 And D.Donation_Action Like 'In'
+GROUP BY D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name
+ORDER BY D.Donation_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Donation_ID" DataSetColumn="Donation_ID" />
+              <Mapping SourceColumn="Donation_DateTime" DataSetColumn="Donation_DateTime" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+              <Mapping SourceColumn="TotalWeight" DataSetColumn="TotalWeight" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationFoodBankTableAdapter" GeneratorDataComponentClassName="DonationFoodBankTableAdapter" Name="DonationFoodBank" UserDataComponentName="DonationFoodBankTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT
+D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name, SUM(DL.DonLin_Weight) AS TotalWeight
+FROM
+Donation D, Entity E, DonLin DL
+WHERE
+D.Donation_ID=DL.Donation_ID And E.Entity_ID=D.Entity_ID And DL.Category_ID&lt;&gt;16 And D.Donation_Action Like 'In' and D.Entity_ID=10
+GROUP BY D.Donation_ID, D.Donation_DateTime, E.Entity_Organization_Name
+ORDER BY D.Donation_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Donation_ID" DataSetColumn="Donation_ID" />
+              <Mapping SourceColumn="Donation_DateTime" DataSetColumn="Donation_DateTime" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+              <Mapping SourceColumn="TotalWeight" DataSetColumn="TotalWeight" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetFilterChoiceListTableAdapter" GeneratorDataComponentClassName="GetFilterChoiceListTableAdapter" Name="GetFilterChoiceList" UserDataComponentName="GetFilterChoiceListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectName="Beans_DB_v4.dbo.GetDonorFilterOptions" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.GetDonorFilterOptions</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Filter_Label" DataSetColumn="Filter_Label" />
+              <Mapping SourceColumn="Filter_Value" DataSetColumn="Filter_Value" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetDonorFilterOptionsTableAdapter" GeneratorDataComponentClassName="GetDonorFilterOptionsTableAdapter" Name="GetDonorFilterOptions" UserDataComponentName="GetDonorFilterOptionsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectName="Beans_DB_v4.dbo.GetDonorFilterOptions" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.GetDonorFilterOptions</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Filter_Label" DataSetColumn="Filter_Label" />
+              <Mapping SourceColumn="Filter_Value" DataSetColumn="Filter_Value" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FDLTableAdapter" GeneratorDataComponentClassName="FDLTableAdapter" Name="FDL" UserDataComponentName="FDLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectName="Beans_DB_v4.dbo.FDL" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.FDL</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@filterby" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@filtervalue" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DonationWasteReportTableAdapter" GeneratorDataComponentClassName="DonationWasteReportTableAdapter" Name="DonationWasteReport" UserDataComponentName="DonationWasteReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Beans_DB_v4ConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select d.Donation_ID, e.Entity_Organization_Name, d.Donation_datetime, c.category_name, dl.Item_description, SUM(DL.DonLin_Weight) as Weight
+From Donation d, DonLin DL, Entity E, Category c
+Where Donation_Action like 'waste' and d.Donation_ID=DL.Donation_ID and D.Entity_ID=E.Entity_ID and DL.Category_ID=c.Category_ID
+Group by d.Donation_ID, E.Entity_Organization_Name, d.Donation_DateTime, c.Category_Name,dl.Item_Description</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Donation_ID" DataSetColumn="Donation_ID" />
+              <Mapping SourceColumn="Entity_Organization_Name" DataSetColumn="Entity_Organization_Name" />
+              <Mapping SourceColumn="Donation_datetime" DataSetColumn="Donation_datetime" />
+              <Mapping SourceColumn="Item_description" DataSetColumn="Item_description" />
+              <Mapping SourceColumn="Weight" DataSetColumn="Weight" />
+              <Mapping SourceColumn="category_name" DataSetColumn="category_name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BeansDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BeansDataSet" msprop:Generator_DataSetName="BeansDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Donation" msprop:Generator_UserTableName="Donation" msprop:Generator_RowDeletedName="DonationRowDeleted" msprop:Generator_RowChangedName="DonationRowChanged" msprop:Generator_RowClassName="DonationRow" msprop:Generator_RowChangingName="DonationRowChanging" msprop:Generator_RowEvArgName="DonationRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationRowChangeEventHandler" msprop:Generator_TableClassName="DonationDataTable" msprop:Generator_TableVarName="tableDonation" msprop:Generator_RowDeletingName="DonationRowDeleting" msprop:Generator_TablePropName="Donation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="donation_ID" msprop:Generator_ColumnVarNameInTable="columndonation_ID" msprop:Generator_ColumnPropNameInRow="donation_ID" msprop:Generator_ColumnPropNameInTable="donation_IDColumn" type="xs:int" />
+              <xs:element name="donation_value" msprop:Generator_UserColumnName="donation_value" msprop:Generator_ColumnVarNameInTable="columndonation_value" msprop:Generator_ColumnPropNameInRow="donation_value" msprop:Generator_ColumnPropNameInTable="donation_valueColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="entity_id" msprop:Generator_UserColumnName="entity_id" msprop:Generator_ColumnVarNameInTable="columnentity_id" msprop:Generator_ColumnPropNameInRow="entity_id" msprop:Generator_ColumnPropNameInTable="entity_idColumn" type="xs:int" />
+              <xs:element name="donation_DateTime" msprop:Generator_UserColumnName="donation_DateTime" msprop:Generator_ColumnPropNameInRow="donation_DateTime" msprop:Generator_ColumnVarNameInTable="columndonation_DateTime" msprop:Generator_ColumnPropNameInTable="donation_DateTimeColumn" type="xs:dateTime" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_TablePropName="DataTable1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="category_name" msprop:Generator_UserColumnName="category_name" msprop:Generator_ColumnPropNameInRow="category_name" msprop:Generator_ColumnVarNameInTable="columncategory_name" msprop:Generator_ColumnPropNameInTable="category_nameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="donation_value" msprop:Generator_UserColumnName="donation_value" msprop:Generator_ColumnPropNameInRow="donation_value" msprop:Generator_ColumnVarNameInTable="columndonation_value" msprop:Generator_ColumnPropNameInTable="donation_valueColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Column1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInTable="Column1Column" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DonationAll" msprop:Generator_UserTableName="DonationAll" msprop:Generator_RowDeletedName="DonationAllRowDeleted" msprop:Generator_RowChangedName="DonationAllRowChanged" msprop:Generator_RowClassName="DonationAllRow" msprop:Generator_RowChangingName="DonationAllRowChanging" msprop:Generator_RowEvArgName="DonationAllRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationAllRowChangeEventHandler" msprop:Generator_TableClassName="DonationAllDataTable" msprop:Generator_TableVarName="tableDonationAll" msprop:Generator_RowDeletingName="DonationAllRowDeleting" msprop:Generator_TablePropName="DonationAll">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Donation_ID" msprop:Generator_ColumnPropNameInRow="Donation_ID" msprop:Generator_ColumnVarNameInTable="columnDonation_ID" msprop:Generator_ColumnPropNameInTable="Donation_IDColumn" type="xs:int" />
+              <xs:element name="Donation_DateTime" msprop:Generator_UserColumnName="Donation_DateTime" msprop:Generator_ColumnPropNameInRow="Donation_DateTime" msprop:Generator_ColumnVarNameInTable="columnDonation_DateTime" msprop:Generator_ColumnPropNameInTable="Donation_DateTimeColumn" type="xs:dateTime" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Column1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInTable="Column1Column" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DonationNonFood" msprop:Generator_UserTableName="DonationNonFood" msprop:Generator_RowDeletedName="DonationNonFoodRowDeleted" msprop:Generator_RowChangedName="DonationNonFoodRowChanged" msprop:Generator_RowClassName="DonationNonFoodRow" msprop:Generator_RowChangingName="DonationNonFoodRowChanging" msprop:Generator_RowEvArgName="DonationNonFoodRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationNonFoodRowChangeEventHandler" msprop:Generator_TableClassName="DonationNonFoodDataTable" msprop:Generator_TableVarName="tableDonationNonFood" msprop:Generator_RowDeletingName="DonationNonFoodRowDeleting" msprop:Generator_TablePropName="DonationNonFood">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Donation_ID" msprop:Generator_ColumnVarNameInTable="columnDonation_ID" msprop:Generator_ColumnPropNameInRow="Donation_ID" msprop:Generator_ColumnPropNameInTable="Donation_IDColumn" type="xs:int" />
+              <xs:element name="Donation_DateTime" msprop:Generator_UserColumnName="Donation_DateTime" msprop:Generator_ColumnVarNameInTable="columnDonation_DateTime" msprop:Generator_ColumnPropNameInRow="Donation_DateTime" msprop:Generator_ColumnPropNameInTable="Donation_DateTimeColumn" type="xs:dateTime" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalWeight" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TotalWeight" msprop:Generator_ColumnVarNameInTable="columnTotalWeight" msprop:Generator_ColumnPropNameInRow="TotalWeight" msprop:Generator_ColumnPropNameInTable="TotalWeightColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DonationFood" msprop:Generator_UserTableName="DonationFood" msprop:Generator_RowDeletedName="DonationFoodRowDeleted" msprop:Generator_RowChangedName="DonationFoodRowChanged" msprop:Generator_RowClassName="DonationFoodRow" msprop:Generator_RowChangingName="DonationFoodRowChanging" msprop:Generator_RowEvArgName="DonationFoodRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationFoodRowChangeEventHandler" msprop:Generator_TableClassName="DonationFoodDataTable" msprop:Generator_TableVarName="tableDonationFood" msprop:Generator_RowDeletingName="DonationFoodRowDeleting" msprop:Generator_TablePropName="DonationFood">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Donation_ID" msprop:Generator_ColumnVarNameInTable="columnDonation_ID" msprop:Generator_ColumnPropNameInRow="Donation_ID" msprop:Generator_ColumnPropNameInTable="Donation_IDColumn" type="xs:int" />
+              <xs:element name="Donation_DateTime" msprop:Generator_UserColumnName="Donation_DateTime" msprop:Generator_ColumnVarNameInTable="columnDonation_DateTime" msprop:Generator_ColumnPropNameInRow="Donation_DateTime" msprop:Generator_ColumnPropNameInTable="Donation_DateTimeColumn" type="xs:dateTime" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalWeight" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TotalWeight" msprop:Generator_ColumnVarNameInTable="columnTotalWeight" msprop:Generator_ColumnPropNameInRow="TotalWeight" msprop:Generator_ColumnPropNameInTable="TotalWeightColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DonationFoodBank" msprop:Generator_UserTableName="DonationFoodBank" msprop:Generator_RowDeletedName="DonationFoodBankRowDeleted" msprop:Generator_RowChangedName="DonationFoodBankRowChanged" msprop:Generator_RowClassName="DonationFoodBankRow" msprop:Generator_RowChangingName="DonationFoodBankRowChanging" msprop:Generator_RowEvArgName="DonationFoodBankRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationFoodBankRowChangeEventHandler" msprop:Generator_TableClassName="DonationFoodBankDataTable" msprop:Generator_TableVarName="tableDonationFoodBank" msprop:Generator_RowDeletingName="DonationFoodBankRowDeleting" msprop:Generator_TablePropName="DonationFoodBank">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Donation_ID" msprop:Generator_ColumnVarNameInTable="columnDonation_ID" msprop:Generator_ColumnPropNameInRow="Donation_ID" msprop:Generator_ColumnPropNameInTable="Donation_IDColumn" type="xs:int" />
+              <xs:element name="Donation_DateTime" msprop:Generator_UserColumnName="Donation_DateTime" msprop:Generator_ColumnVarNameInTable="columnDonation_DateTime" msprop:Generator_ColumnPropNameInRow="Donation_DateTime" msprop:Generator_ColumnPropNameInTable="Donation_DateTimeColumn" type="xs:dateTime" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalWeight" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TotalWeight" msprop:Generator_ColumnVarNameInTable="columnTotalWeight" msprop:Generator_ColumnPropNameInRow="TotalWeight" msprop:Generator_ColumnPropNameInTable="TotalWeightColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GetFilterChoiceList" msprop:Generator_UserTableName="GetFilterChoiceList" msprop:Generator_RowDeletedName="GetFilterChoiceListRowDeleted" msprop:Generator_RowChangedName="GetFilterChoiceListRowChanged" msprop:Generator_RowClassName="GetFilterChoiceListRow" msprop:Generator_RowChangingName="GetFilterChoiceListRowChanging" msprop:Generator_RowEvArgName="GetFilterChoiceListRowChangeEvent" msprop:Generator_RowEvHandlerName="GetFilterChoiceListRowChangeEventHandler" msprop:Generator_TableClassName="GetFilterChoiceListDataTable" msprop:Generator_TableVarName="tableGetFilterChoiceList" msprop:Generator_RowDeletingName="GetFilterChoiceListRowDeleting" msprop:Generator_TablePropName="GetFilterChoiceList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Filter_Label" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Filter_Label" msprop:Generator_ColumnVarNameInTable="columnFilter_Label" msprop:Generator_ColumnPropNameInRow="Filter_Label" msprop:Generator_ColumnPropNameInTable="Filter_LabelColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Filter_Value" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Filter_Value" msprop:Generator_ColumnVarNameInTable="columnFilter_Value" msprop:Generator_ColumnPropNameInRow="Filter_Value" msprop:Generator_ColumnPropNameInTable="Filter_ValueColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GetDonorFilterOptions" msprop:Generator_UserTableName="GetDonorFilterOptions" msprop:Generator_RowDeletedName="GetDonorFilterOptionsRowDeleted" msprop:Generator_RowChangedName="GetDonorFilterOptionsRowChanged" msprop:Generator_RowClassName="GetDonorFilterOptionsRow" msprop:Generator_RowChangingName="GetDonorFilterOptionsRowChanging" msprop:Generator_RowEvArgName="GetDonorFilterOptionsRowChangeEvent" msprop:Generator_RowEvHandlerName="GetDonorFilterOptionsRowChangeEventHandler" msprop:Generator_TableClassName="GetDonorFilterOptionsDataTable" msprop:Generator_TableVarName="tableGetDonorFilterOptions" msprop:Generator_RowDeletingName="GetDonorFilterOptionsRowDeleting" msprop:Generator_TablePropName="GetDonorFilterOptions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Filter_Label" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Filter_Label" msprop:Generator_ColumnVarNameInTable="columnFilter_Label" msprop:Generator_ColumnPropNameInRow="Filter_Label" msprop:Generator_ColumnPropNameInTable="Filter_LabelColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Filter_Value" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Filter_Value" msprop:Generator_ColumnVarNameInTable="columnFilter_Value" msprop:Generator_ColumnPropNameInRow="Filter_Value" msprop:Generator_ColumnPropNameInTable="Filter_ValueColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FDL" msprop:Generator_UserTableName="FDL" msprop:Generator_RowDeletedName="FDLRowDeleted" msprop:Generator_RowChangedName="FDLRowChanged" msprop:Generator_RowClassName="FDLRow" msprop:Generator_RowChangingName="FDLRowChanging" msprop:Generator_RowEvArgName="FDLRowChangeEvent" msprop:Generator_RowEvHandlerName="FDLRowChangeEventHandler" msprop:Generator_TableClassName="FDLDataTable" msprop:Generator_TableVarName="tableFDL" msprop:Generator_RowDeletingName="FDLRowDeleting" msprop:Generator_TablePropName="FDL">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DonationWasteReport" msprop:Generator_UserTableName="DonationWasteReport" msprop:Generator_RowDeletedName="DonationWasteReportRowDeleted" msprop:Generator_TableClassName="DonationWasteReportDataTable" msprop:Generator_RowChangedName="DonationWasteReportRowChanged" msprop:Generator_RowClassName="DonationWasteReportRow" msprop:Generator_RowChangingName="DonationWasteReportRowChanging" msprop:Generator_RowEvArgName="DonationWasteReportRowChangeEvent" msprop:Generator_RowEvHandlerName="DonationWasteReportRowChangeEventHandler" msprop:Generator_TablePropName="DonationWasteReport" msprop:Generator_TableVarName="tableDonationWasteReport" msprop:Generator_RowDeletingName="DonationWasteReportRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Donation_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Donation_ID" msprop:Generator_ColumnPropNameInRow="Donation_ID" msprop:Generator_ColumnVarNameInTable="columnDonation_ID" msprop:Generator_ColumnPropNameInTable="Donation_IDColumn" type="xs:int" />
+              <xs:element name="Entity_Organization_Name" msprop:Generator_UserColumnName="Entity_Organization_Name" msprop:Generator_ColumnPropNameInRow="Entity_Organization_Name" msprop:Generator_ColumnVarNameInTable="columnEntity_Organization_Name" msprop:Generator_ColumnPropNameInTable="Entity_Organization_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Donation_datetime" msprop:Generator_UserColumnName="Donation_datetime" msprop:Generator_ColumnPropNameInRow="Donation_datetime" msprop:Generator_ColumnVarNameInTable="columnDonation_datetime" msprop:Generator_ColumnPropNameInTable="Donation_datetimeColumn" type="xs:dateTime" />
+              <xs:element name="Item_description" msprop:Generator_UserColumnName="Item_description" msprop:Generator_ColumnPropNameInRow="Item_description" msprop:Generator_ColumnVarNameInTable="columnItem_description" msprop:Generator_ColumnPropNameInTable="Item_descriptionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Weight" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Weight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInTable="WeightColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="category_name" msprop:Generator_UserColumnName="category_name" msprop:Generator_ColumnPropNameInRow="category_name" msprop:Generator_ColumnVarNameInTable="columncategory_name" msprop:Generator_ColumnPropNameInTable="category_nameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Donation" />
+      <xs:field xpath="mstns:donation_ID" />
+    </xs:unique>
+    <xs:unique name="DonationAll_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DonationAll" />
+      <xs:field xpath="mstns:Donation_ID" />
+    </xs:unique>
+    <xs:unique name="DonationNonFood_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DonationNonFood" />
+      <xs:field xpath="mstns:Donation_ID" />
+    </xs:unique>
+    <xs:unique name="DonationFood_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DonationFood" />
+      <xs:field xpath="mstns:Donation_ID" />
+    </xs:unique>
+    <xs:unique name="DonationFoodBank_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DonationFoodBank" />
+      <xs:field xpath="mstns:Donation_ID" />
+    </xs:unique>
+    <xs:unique name="DonationWasteReport_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DonationWasteReport" />
+      <xs:field xpath="mstns:Donation_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

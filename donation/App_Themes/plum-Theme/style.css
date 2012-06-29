@@ -1,0 +1,191 @@
+﻿/* 
+Theme: Donation
+Date: Feb 2010 
+Author: Kevin Browning 
+Email: ksbrowning@kbitsystems.com
+*/
+
+* {
+margin:0;
+padding:0;
+}
+
+body {
+background:#fff url(images/background.gif) top left repeat-x;
+font-size:87.5%;
+font-family:Arial, Sans-Serif;
+line-height:1.4em;
+color:#666;
+text-align:center;
+}
+
+#wrapper {
+width:960px;
+margin:0 auto;
+position:relative;
+text-align:left;
+}
+
+#header {
+width: 100%;
+height: 134px;
+position:relative;
+}
+
+#header a.logo, #header a.logo:hover, #header a.logo:visited {
+position:absolute;
+top:0;
+left:0;
+text-decoration:none;
+border:none;
+}
+
+#header img {
+border:none;
+}
+
+
+#banner {
+z-index:-1;
+position:relative;
+width:960px;
+height:106px;
+background: #782222 url(images/banner.jpg) no-repeat;
+}
+
+#container {
+width:946px;
+height:100%;
+padding-bottom:1em;
+padding-left:1em;
+
+overflow:hidden;
+background:#fff url(images/container.jpg) top left repeat-x;
+position:relative;
+}
+
+#left-620 {
+float:left;
+width:620px;
+}
+
+#right-340 {
+float:right;
+width:340px;
+}
+
+#right-620 {
+float:right;
+width:620px;
+}
+
+#left-340 {
+float:left;
+width:340px;
+}
+
+.inner {
+padding:0 1em 1em 1em;
+}
+
+.inner ul li {
+margin-left: 1em;
+}
+
+p {
+line-height:1.4em;
+margin:1em 0;
+}
+
+a, a:visited {
+color:#a7434a;
+text-decoration:none;
+border-bottom: 1px dotted #a7434a;
+}
+
+a:hover {
+border-bottom: 1px solid #a7434a;
+}
+
+#left-col a.arrow, #right-col a.arrow {
+margin: 1em 0;
+display: block;
+border-bottom:none;
+text-transform: uppercase;
+padding-left: 25px;
+font-weight: bold;
+}
+
+#nav{
+position: absolute;
+top: 100px;
+left: 0px;
+}
+
+#banner h1 {
+font-weight: normal;
+position: absolute;
+top:40px;
+left:10px;
+}
+
+#header h1 {
+font-weight: normal;
+position: absolute;
+top:135px;
+left:10px;
+}
+
+h1 {
+text-transform: uppercase;
+font-size:1.5em;
+font-family:Arial;
+color:#fff;
+}
+
+h2 {
+font-size:1.4em;
+font-family:Arial;
+color:#782222;
+margin:1em 0;
+padding-bottom:0.2em;
+border-bottom:2px dotted #dad8d8;
+}
+
+h2.notopmargin {
+margin-top:0;
+}
+
+h3 {
+font-size:1.3em;
+font-family:Arial;
+color:#782222;
+margin:1em 0;
+}
+
+h4 {
+font-size:1.1em;
+color:#b3e1eb;
+margin:1em 0;
+}
+h5 {
+font-size:1em;
+font-family:Arial;
+color:#782222;
+margin:1em 0;
+}
+
+#footer {
+border-top:2px dotted #DAD8D8;
+background:#fff;
+padding:1em;
+color:#6c605c;
+}
+
+.MPEBackground
+{
+    background-color:Gray;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+
